@@ -1,4 +1,4 @@
-import { useEffect, useContext } from 'react';
+import { useContext } from 'react';
 import React from 'react';
 import UserItem from './UserItem';
 import Spinner from '../shared/Spinner';
@@ -6,11 +6,12 @@ import Spinner from '../shared/Spinner';
 import GithubContext from '../../context/github/GithubContext';
 function UserResults() {
   // we can grap any vlaue form the GitHubContext.jsx
-  const { users, loading, fetchUsers } = useContext(GithubContext);
+  const { users, loading } = useContext(GithubContext);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
+  // useEffect(() => {
+  //   console.log('LIST');
+  //   fetchUsers();
+  // }, []);
 
   if (!loading) {
     return (

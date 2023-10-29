@@ -20,7 +20,6 @@ export const GithubProvider = ({ children }) => {
   //   destructring from an aray
   const [state, dispatch] = useReducer(GithubReducer, initialState);
 
-  //   for testing purpuses
   //   hence we use async await we build function out the use effect
   const fetchUsers = async () => {
     setLoading(); // setLoading to true
