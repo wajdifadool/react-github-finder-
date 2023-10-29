@@ -23,8 +23,9 @@ function UserItem({ user: { login, avatar_url } }) {
     </div>
   );
 }
+// }
 
-UserItem.propTypes = {
-  user: PropTypes.object.isRequired,
-};
+// UserItem.propTypes = {
+//   user: PropTypes.object.isRequired,
+// };
 export default UserItem;
