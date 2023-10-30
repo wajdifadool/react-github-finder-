@@ -13,6 +13,11 @@ const GithubReducer = (state, action) => {
         ...state, // the current state preserved and we add to it what ever follows
         loading: true,
       };
+    case 'CLEAR_USERS':
+      return {
+        ...state, // the current state preserved and we add to it what ever follows
+        users: [],
+      };
 
     default:
       return state;

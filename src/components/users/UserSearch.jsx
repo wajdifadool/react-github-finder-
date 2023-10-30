@@ -5,7 +5,7 @@ import GithubContext from '../../context/github/GithubContext';
 function UserSearch() {
   const [text, setText] = useState('');
 
-  const { users } = useContext(GithubContext);
+  const { users, searchUsers, clearUsers } = useContext(GithubContext);
 
   const handleTextChange = (e) => {
     setText(e.target.value);
@@ -19,13 +19,17 @@ function UserSearch() {
       alert('search first Please');
     } else {
       // @todo = serach users goes here
-
+      searchUsers(text);
       // clear User Input
       setText('');
     }
     // setText(e.target.value);
   };
 
+  const handleClear = (e) => {
+    e.preventDefault();
+    clearUsers();
+  };
   return (
     <div className="grid grid-cols-1 xl:gird-cols-2 lg:grid-cols-2 md:gird-cols-2 mb-8 gap-8">
       {/* Form */}
@@ -54,7 +58,9 @@ function UserSearch() {
       the users and check for its length  */}
       {users.length !== 0 && (
         <div>
-          <button className="btn btn-ghost btn-lg">Clear</button>
+          <button className="btn btn-ghost btn-lg" onClick={handleClear}>
+            Clear
+          </button>
         </div>
       )}
     </div>
