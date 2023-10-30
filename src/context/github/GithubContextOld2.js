@@ -33,12 +33,12 @@ export const GithubProvider = ({ children }) => {
   Then you want to bring that function into your component, into the user search component from the context
   and you want to call it when you click and fire that off.
   */
-  // const clearUsers = () => {
-  //   console.log('Clear users called');
-  //   dispatch({
-  //     type: 'CLEAR_USERS',
-  //   });
-  // };
+  const clearUsers = () => {
+    console.log('Clear users called');
+    dispatch({
+      type: 'CLEAR_USERS',
+    });
+  };
 
   //   destructring from an aray
   const [state, dispatch] = useReducer(GithubReducer, initialState);
@@ -71,61 +71,61 @@ export const GithubProvider = ({ children }) => {
   // };
 
   // gt single user
-  // const getUser = async (login) => {
-  //   setLoading(); // setLoading to true
-  //   const response = await fetch(`${GITHUB_URL}/users/${login}`, {
-  //     headers: {
-  //       Authorization: `token ${GITHUB_TOKEN}`,
-  //     },
-  //   }); // end of response
+  const getUser = async (login) => {
+    setLoading(); // setLoading to true
+    const response = await fetch(`${GITHUB_URL}/users/${login}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    }); // end of response
 
-  //   if (response.status === 404) {
-  //     // redirect
-  //     window.location = '/notfound';
-  //   } else {
-  //     const m_user = await response.json();
+    if (response.status === 404) {
+      // redirect
+      window.location = '/notfound';
+    } else {
+      const m_user = await response.json();
 
-  //     // ok we get the data . dispatch whom ever listening
-  //     dispatch({
-  //       type: 'GET_USER',
-  //       payload: m_user, // passing data  key:value
-  //     });
+      // ok we get the data . dispatch whom ever listening
+      dispatch({
+        type: 'GET_USER',
+        payload: m_user, // passing data  key:value
+      });
 
-  //     // console.log(m_user);
-  //   }
-  // };
+      // console.log(m_user);
+    }
+  };
   //getUser Repos
-  // const getUserRepos = async (login) => {
-  //   setLoading(); // setLoading to true
+  const getUserRepos = async (login) => {
+    setLoading(); // setLoading to true
 
-  //   const params = new URLSearchParams({
-  //     sort: 'created',
-  //     per_page: 10,
-  //   });
+    const params = new URLSearchParams({
+      sort: 'created',
+      per_page: 10,
+    });
 
-  //   const response = await fetch(
-  //     `${GITHUB_URL}/users/${login}/repos?${params}`,
-  //     {
-  //       headers: {
-  //         Authorization: `token ${GITHUB_TOKEN}`,
-  //       },
-  //     }
-  //   ); // end of response
+    const response = await fetch(
+      `${GITHUB_URL}/users/${login}/repos?${params}`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      }
+    ); // end of response
 
-  //   // destructure the response
-  //   const data = await response.json();
+    // destructure the response
+    const data = await response.json();
 
-  //   // ok we get the data . dispatch whom ever listening
-  //   dispatch({
-  //     type: 'GET_REPOS', // the case that will ba invoked
-  //     payload: data, // passing data  key:value
-  //   });
-  // };
+    // ok we get the data . dispatch whom ever listening
+    dispatch({
+      type: 'GET_REPOS', // the case that will ba invoked
+      payload: data, // passing data  key:value
+    });
+  };
 
   //   for testing purpuses
   //   hence we use async await we build function out the use effect
   const fetchUsers = async () => {
-    // setLoading(); // setLoading to true
+    setLoading(); // setLoading to true
     // console.log('FEtch');
     // setLoading(true)
     const response = await fetch(`${GITHUB_URL}/users`, {
@@ -149,7 +149,7 @@ export const GithubProvider = ({ children }) => {
 
   // fuction letiral
   // set Loading to true
-  // const setLoading = () => dispatch({ type: 'SET_LOADING' });
+  const setLoading = () => dispatch({ type: 'SET_LOADING' });
 
   //   this the standerd tempalte using githubContext.Provider
   // 1 we pass the children
@@ -171,10 +171,10 @@ export const GithubProvider = ({ children }) => {
         ...state,
 
         dispatch,
-
-        // clearUsers,
-        // getUser,
-        // getUserRepos,
+        // searchUsers,
+        clearUsers,
+        getUser,
+        getUserRepos,
       }}>
       {children}
     </GithubContext.Provider>

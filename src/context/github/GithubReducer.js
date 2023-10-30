@@ -8,17 +8,19 @@ const GithubReducer = (state, action) => {
         loading: false,
       };
     // get user in User.jsx
-    case 'GET_USER':
-      return {
-        ...state, // the current state preserved and we add to it what ever follows
-        user: action.payload,
-        loading: false,
-      };
+    // case 'GET_USER':
+    //   return {
+    //     ...state, // the current state preserved and we add to it what ever follows
+    //     user: action.payload,
+    //     loading: false,
+    //   };
     // called from User.jsx
-    case 'GET_REPOS':
+    case 'GET_USER_AND_REPOS':
       return {
         ...state, // the current state preserved and we add to it what ever follows
-        repos: action.payload,
+        repos: action.payload.repos,
+        user: action.payload.user,
+
         loading: false,
       };
     case 'SET_LOADING':
