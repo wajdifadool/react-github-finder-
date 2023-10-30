@@ -8,7 +8,7 @@ import { GithubProvider } from './context/github/GithubContext';
 
 function App() {
   return (
-    // make sure to wrap the Elements Using the GithubContext
+    // make sure to wrap the Elements Using the Githubprovider
     <GithubProvider>
       <Router>
         <div className="flex flex-col justify-between h-screen">
