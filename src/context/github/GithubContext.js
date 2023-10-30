@@ -102,6 +102,12 @@ export const GithubProvider = ({ children }) => {
   return (
     <GithubContext.Provider
       value={{
+        /*
+        Your reducer looks at that action, updates the state, 
+        and then any components that use any part of
+        that state are going to get are going to react to it.
+        So we have one single source of truth for our state.
+        */
         users: state.users,
         loading: state.loading,
         searchUsers,
