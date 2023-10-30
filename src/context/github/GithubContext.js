@@ -16,9 +16,12 @@ export const GithubProvider = ({ children }) => {
   //   const [loading, setLoading] = useState(true);
 
   // this is for the reducer
+
   const initialState = {
     users: [],
     loading: false,
+    user: {},
+    repos: [],
   };
 
   /*
@@ -67,6 +70,58 @@ export const GithubProvider = ({ children }) => {
     // console.log(data);
   };
 
+  // gt single user
+  const getUser = async (login) => {
+    setLoading(); // setLoading to true
+    const response = await fetch(`${GITHUB_URL}/users/${login}`, {
+      headers: {
+        Authorization: `token ${GITHUB_TOKEN}`,
+      },
+    }); // end of response
+
+    if (response.status === 404) {
+      // redirect
+      window.location = '/notfound';
+    } else {
+      const m_user = await response.json();
+
+      // ok we get the data . dispatch whom ever listening
+      dispatch({
+        type: 'GET_USER',
+        payload: m_user, // passing data  key:value
+      });
+
+      // console.log(m_user);
+    }
+  };
+  //getUser Repos
+  const getUserRepos = async (login) => {
+    setLoading(); // setLoading to true
+
+    const params = new URLSearchParams({
+      sort: 'created',
+      per_page: 10,
+    });
+
+    const response = await fetch(
+      `${GITHUB_URL}/users/${login}/repos?${params}`,
+      {
+        headers: {
+          Authorization: `token ${GITHUB_TOKEN}`,
+        },
+      }
+    ); // end of response
+
+    // destructure the response
+    const data = await response.json();
+
+    // ok we get the data . dispatch whom ever listening
+    dispatch({
+      type: 'GET_REPOS', // the case that will ba invoked
+      payload: data, // passing data  key:value
+    });
+  };
+
   //   for testing purpuses
   //   hence we use async await we build function out the use effect
   const fetchUsers = async () => {
@@ -112,6 +167,10 @@ export const GithubProvider = ({ children }) => {
         loading: state.loading,
         searchUsers,
         clearUsers,
+        user: state.user, // in User.jsx
+        getUser,
+        repos: state.repos,
+        getUserRepos,
       }}>
       {children}
     </GithubContext.Provider>

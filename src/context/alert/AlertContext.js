@@ -21,7 +21,7 @@ export const AlertProvider = ({ children }) => {
       dispatch({
         type: 'REMOVE_ALERT',
       });
-    }, 10000);
+    }, 1500);
   };
   return (
     <AlertContext.Provider
