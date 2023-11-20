@@ -9,7 +9,7 @@
 
 ## Deployed
 
-- [On Vercel](https://gabriels-react-front-to-back-02-github-finder.vercel.app/)
+- [On Vercel](https://react-github-finder-two-ashy.vercel.app/)
 
 ## Used Tools:
 
