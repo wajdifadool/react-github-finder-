@@ -8,6 +8,7 @@ Search for a user by entering their username into the search field. If no userna
 
 If an invalid URL is entered, a custom 404 Not Found page is displayed.
 
+> DEMO GIF:
 ![ezgif-4-717368943d](https://github.com/user-attachments/assets/f34c9e37-35d4-41e8-9c8b-f1dd562fa8d9)
 
 
